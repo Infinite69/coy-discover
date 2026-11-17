@@ -34,9 +34,15 @@ MongoDB Compass is only the database viewer. The MongoDB server must also be ins
    npm run dev
    ```
 
-The frontend runs at http://localhost:3000. The API runs at http://localhost:4000. Home is intentionally blank; Discover and Matches are implemented. On first start, the server seeds 30 profiles. When upgrading from the earlier celebrity demo, it replaces those profiles and clears the old demo swipes once. Seven fictional profiles have sample incoming likes so the mutual-match demo can be shown. All profiles, bios, likes, and match activity are fictional. Avatar portraits are AI-generated.
+The frontend runs at http://localhost:3000. The API runs at http://localhost:4000. Home is intentionally blank; Discover and Matches are implemented. On first start, the server seeds 30 profiles. When upgrading from the earlier celebrity demo, it replaces those profiles and clears the old demo swipes once. Eight fictional profiles have sample incoming likes so the mutual-match demo can be shown. All profiles, bios, likes, and match activity are fictional. Avatar portraits are AI-generated.
 
 You can also start each app in a separate terminal with `npm run dev:client` and `npm run dev:server`.
+
+## GitHub and deployment configuration
+
+The `.env` file is local-only and ignored by Git. Do not commit it or place it in a submission archive. The checked-in `.env.example` contains only a local MongoDB example, not Atlas credentials.
+
+For a split frontend/API deployment, set `MONGODB_URI` as a secret on the API host, set `CLIENT_ORIGIN` there to the deployed frontend URL, and set `NEXT_PUBLIC_API_URL` in the frontend host to the deployed API base URL before building. Without `NEXT_PUBLIC_API_URL`, Next.js uses the localhost proxy intended for local development.
 
 ## API
 

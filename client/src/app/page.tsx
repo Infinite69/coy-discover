@@ -6,7 +6,7 @@ import { ArrowLeft, Check, ChevronDown, Heart, Home as HomeIcon, MessageCircle, 
 type Profile = { _id: string; name: string; age: number; photo: string; bio: string; location: string; interests: string[] };
 type Match = Profile & { matchedAt: string };
 type Tab = "home" | "discover" | "matches";
-const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
+const API = process.env.NEXT_PUBLIC_API_URL ?? "/api";
 
 export default function HomePage() {
   const [tab, setTab] = useState<Tab>("discover");
