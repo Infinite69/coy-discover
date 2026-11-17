@@ -9,38 +9,34 @@ A standalone, mobile-first swipe discovery app for the Coy SDE Intern assignment
 - MongoDB through Mongoose
 - Postman collection at `postman/Coy-Discover.postman_collection.json`
 
-## Database and authentication
-
-MongoDB is the persistence layer for this demo, as allowed by the assignment's choice of JSON, SQLite, or any database. The app does not implement user accounts, passwords, or third-party sign-in. It assumes one logged-in user and represents that user with a fixed `demo-user` ID in the API. `MONGODB_URI` is only the database connection setting; it is not an application login system.
-
-For Atlas, put the connection URI in the root `.env` file as `MONGODB_URI=...`. The Atlas database user must have read/write access, and the machine running the API must be allowed in the cluster's Network Access list. Do not paste the URI into source code or commit `.env`; use `.env.example` as a template. On first API startup, the app inserts the fictional seed profiles into `coy_discover`, which creates the database and its collections if they do not already exist.
-
 ## Requirements
 
 - Node.js 20 or newer and npm
 - MongoDB running locally, or a MongoDB connection string
 
-MongoDB Compass is a database viewer, not the database server. For a local database, install and start MongoDB Server. Alternatively, point `MONGODB_URI` to MongoDB Atlas. Compass can connect to either deployment to browse its data.
+MongoDB Compass is only the database viewer. The MongoDB server must also be installed and running, or set `MONGODB_URI` to a MongoDB Atlas connection string.
 
 ## Run locally
 
 1. Copy `.env.example` to `.env` in the project root.
 2. Set `MONGODB_URI` if your MongoDB connection differs from the local default.
-3. Install dependencies in each project folder:
+3. Install dependencies for the root, frontend, and backend from the project root. Run this once:
 
    ```sh
-   npm install
-   npm --prefix client install
-   npm --prefix server install
+   npm run setup
    ```
 
-4. Start the frontend and API together:
+   Do not run `npm client install`; npm does not have a `client` command.
+
+4. Start the frontend and API together from the project root:
 
    ```sh
    npm run dev
    ```
 
 The frontend runs at http://localhost:3000. The API runs at http://localhost:4000. Home is intentionally blank; Discover and Matches are implemented. On first start, the server seeds 30 profiles. When upgrading from the earlier celebrity demo, it replaces those profiles and clears the old demo swipes once. Eight fictional profiles have sample incoming likes so the mutual-match demo can be shown. All profiles, bios, likes, and match activity are fictional. Avatar portraits are AI-generated.
+
+Wait until the terminal prints `API listening on http://localhost:4000` before using Discover. If the API does not start, read the `[server]` error in that terminal; the frontend cannot load profiles until MongoDB connects.
 
 You can also start each app in a separate terminal with `npm run dev:client` and `npm run dev:server`.
 
