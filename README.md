@@ -9,12 +9,18 @@ A standalone, mobile-first swipe discovery app for the Coy SDE Intern assignment
 - MongoDB through Mongoose
 - Postman collection at `postman/Coy-Discover.postman_collection.json`
 
+## Database and authentication
+
+MongoDB is the persistence layer for this demo, as allowed by the assignment's choice of JSON, SQLite, or any database. The app does not implement user accounts, passwords, or third-party sign-in. It assumes one logged-in user and represents that user with a fixed `demo-user` ID in the API. `MONGODB_URI` is only the database connection setting; it is not an application login system.
+
+For Atlas, put the connection URI in the root `.env` file as `MONGODB_URI=...`. The Atlas database user must have read/write access, and the machine running the API must be allowed in the cluster's Network Access list. Do not paste the URI into source code or commit `.env`; use `.env.example` as a template. On first API startup, the app inserts the fictional seed profiles into `coy_discover`, which creates the database and its collections if they do not already exist.
+
 ## Requirements
 
 - Node.js 20 or newer and npm
 - MongoDB running locally, or a MongoDB connection string
 
-MongoDB Compass is only the database viewer. The MongoDB server must also be installed and running, or set `MONGODB_URI` to a MongoDB Atlas connection string.
+MongoDB Compass is a database viewer, not the database server. For a local database, install and start MongoDB Server. Alternatively, point `MONGODB_URI` to MongoDB Atlas. Compass can connect to either deployment to browse its data.
 
 ## Run locally
 
